@@ -1,12 +1,11 @@
-import React from 'react'
-import { Header } from './components/Header'
-import { HeroSection } from './components/HeroSection'
-import { ExperienceSection } from './components/ExperienceSection'
-import { ProjectsSection } from './components/ProjectsSection'
-import { Footer } from './components/Footer'
+import React from 'react';
+import { Header } from './components/Header';
+import { HeroSection } from './components/HeroSection';
+import { ExperienceSection } from './components/ExperienceSection';
+import { ProjectsSection } from './components/ProjectsSection';
+import { Footer } from './components/Footer';
 export function App() {
-  return (
-    <div className="min-h-screen bg-background">
+  return <div className="min-h-screen bg-background">
       <Header />
       <main className="container mx-auto px-4 sm:px-6 lg:px-8">
         <HeroSection />
@@ -22,6 +21,5 @@ export function App() {
         </div>
       </main>
       <Footer />
-    </div>
-  )
+    </div>;
 }

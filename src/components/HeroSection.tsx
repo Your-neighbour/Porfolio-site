@@ -1,8 +1,7 @@
-import React from 'react'
-import { Github, Linkedin, Mail } from 'lucide-react'
+import React from 'react';
+import { Github, Linkedin, Mail } from 'lucide-react';
 export function HeroSection() {
-  return (
-    <section id="about" className="py-16 md:py-24">
+  return <section id="about" className="py-16 md:py-24">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
         <div className="order-2 md:order-1">
           <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">
@@ -18,25 +17,13 @@ export function HeroSection() {
             performance and scalability.
           </p>
           <div className="flex space-x-4 mb-8">
-            <a
-              href="#"
-              className="p-2 rounded-full border border-border hover:bg-accent transition-colors"
-              aria-label="GitHub profile"
-            >
+            <a href="#" className="p-2 rounded-full border border-border hover:bg-accent transition-colors" aria-label="GitHub profile">
               <Github size={20} />
             </a>
-            <a
-              href="#"
-              className="p-2 rounded-full border border-border hover:bg-accent transition-colors"
-              aria-label="LinkedIn profile"
-            >
+            <a href="#" className="p-2 rounded-full border border-border hover:bg-accent transition-colors" aria-label="LinkedIn profile">
               <Linkedin size={20} />
             </a>
-            <a
-              href="#"
-              className="p-2 rounded-full border border-border hover:bg-accent transition-colors"
-              aria-label="Email contact"
-            >
+            <a href="#" className="p-2 rounded-full border border-border hover:bg-accent transition-colors" aria-label="Email contact">
               <Mail size={20} />
             </a>
           </div>
@@ -60,14 +47,9 @@ export function HeroSection() {
         </div>
         <div className="order-1 md:order-2 flex justify-center">
           <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-border">
-            <img
-              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80"
-              alt="Profile"
-              className="w-full h-full object-cover"
-            />
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Profile" className="w-full h-full object-cover" />
           </div>
         </div>
       </div>
-    </section>
-  )
+    </section>;
 }
