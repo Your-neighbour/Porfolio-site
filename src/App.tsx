@@ -7,17 +7,19 @@ import { Footer } from './components/Footer';
 export function App() {
   return <div className="min-h-screen bg-background">
       <Header />
-      <main className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <main className="relative">
         <HeroSection />
-        <div className="border-t border-border my-8"></div>
-        <div className="mb-8">
-          <h2 className="text-3xl font-bold py-4">Experience & Education</h2>
-          <ExperienceSection />
-        </div>
-        <div className="border-t border-border my-8"></div>
-        <div className="mb-8">
-          <h2 className="text-3xl font-bold py-4">Projects</h2>
-          <ProjectsSection />
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="border-t border-border my-8"></div>
+          <section id="experience" className="mb-8">
+            <h2 className="text-3xl font-bold py-4">Experience & Education</h2>
+            <ExperienceSection />
+          </section>
+          <div className="border-t border-border my-8"></div>
+          <section id="projects" className="mb-8">
+            <h2 className="text-3xl font-bold py-4">Projects</h2>
+            <ProjectsSection />
+          </section>
         </div>
       </main>
       <Footer />

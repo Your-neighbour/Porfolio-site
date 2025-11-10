@@ -20,81 +20,106 @@ type Project = {
 export function ProjectsSection() {
   const [expandedProject, setExpandedProject] = useState<number | null>(null);
   const projects: Project[] = [{
-    title: 'E-Commerce Platform',
-    description: 'A full-stack e-commerce solution with React, Node.js, and Stripe integration.',
-    fullDescription: 'A comprehensive e-commerce platform built from the ground up with modern web technologies. Features include user authentication, product management, shopping cart functionality, and secure payment processing through Stripe.',
+    title: 'Custom Reflow Oven',
+    description: 'Converting a toaster oven into a GUI-controlled reflow oven for PCB assembly with PID temperature control.',
+    fullDescription: 'A personal project to create a user-friendly reflow oven for assembling PCBs. Features custom-mounted thermocouple for temperature monitoring and ESP32-based PID control loop with solid state relay for precise heating element control.',
     media: [{
       type: 'image',
-      url: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80',
-      alt: 'Project thumbnail'
-    }, {
-      type: 'image',
-      url: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2015&q=80',
-      alt: 'E-commerce dashboard'
-    }, {
-      type: 'video',
-      url: 'https://www.w3schools.com/html/mov_bbb.mp4',
-      alt: 'Demo video'
+      url: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+      alt: 'Reflow oven project'
     }],
-    tags: ['React', 'Node.js', 'MongoDB', 'Stripe'],
+    tags: ['ESP32', 'PID Control', 'PCB Assembly', 'Embedded Systems'],
     codeUrl: '#',
     demoUrl: '#',
-    features: ['User authentication and authorization', 'Product catalog with search and filtering', 'Shopping cart and checkout process', 'Stripe payment integration', 'Admin dashboard for inventory management', 'Order tracking and history'],
-    challenges: 'Implementing real-time inventory updates and ensuring secure payment processing while maintaining a smooth user experience.',
-    outcome: 'Successfully launched platform serving 10,000+ users with 99.9% uptime and processing $500K+ in transactions.'
+    features: ['Custom mounted thermocouple for internal temperature monitoring', 'PID control loop using ESP32 microcontroller', 'Solid state relay for precise heating element control', 'User-friendly GUI for easy configuration', 'Configurable wave profiles for different PCB requirements', 'Real-time temperature monitoring and display'],
+    challenges: 'Implementing accurate PID control to maintain precise temperature profiles required for proper solder reflow, while ensuring safety and reliability.',
+    outcome: 'Currently in development (July 2025 - Present). Aiming to create a cost-effective solution for PCB assembly.'
   }, {
-    title: 'Task Management App',
-    description: 'A collaborative task management application with real-time updates.',
-    fullDescription: 'A powerful task management solution designed for teams to collaborate effectively. Built with real-time synchronization using Firebase, allowing team members to see updates instantly.',
+    title: 'Low Power Distribution Board',
+    description: 'Custom PCB design for 12V power distribution system across UBC Supermileage Urban electric vehicle.',
+    fullDescription: 'Designed a comprehensive power distribution system for the UBC Supermileage electric vehicle. The project involved selecting appropriate DC-DC converters, designing connector systems, planning wiring layouts, and implementing electrical noise reduction.',
     media: [{
       type: 'image',
-      url: 'https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80',
-      alt: 'Project thumbnail'
-    }, {
-      type: 'image',
-      url: 'https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80',
-      alt: 'Task management interface'
+      url: 'https://images.unsplash.com/photo-1581092918484-8313e1f7e8c6?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+      alt: 'PCB design'
     }],
-    tags: ['TypeScript', 'React', 'Firebase', 'Redux'],
+    tags: ['PCB Design', 'KiCAD', 'Power Systems', 'Electric Vehicle'],
     codeUrl: '#',
     demoUrl: '#',
-    features: ['Real-time task updates across all devices', 'Drag-and-drop task organization', 'Team collaboration and comments', 'Priority and deadline management', 'Progress tracking and analytics', 'Mobile-responsive design'],
-    challenges: 'Managing complex state across multiple users while maintaining real-time synchronization without conflicts.',
-    outcome: 'Adopted by 50+ teams, improving task completion rates by 35% and reducing project delays by 40%.'
+    features: ['Custom PCB design for power distribution', 'DC-DC converter selection and integration', 'Optimized connector system design', 'Electrical noise reduction implementation', 'Efficient wiring layout for 12V distribution', 'Integration with vehicle electrical systems'],
+    challenges: 'Designing a reliable power distribution system that minimizes electrical noise while maintaining efficiency across multiple vehicle subsystems.',
+    outcome: 'Successfully designed and assembled custom PCB supporting the distribution system for UBC Supermileage electric vehicle.'
   }, {
-    title: 'AI Content Generator',
-    description: 'An AI-powered application that generates content based on user prompts.',
-    fullDescription: 'An innovative content generation tool leveraging OpenAI API to help users create high-quality content quickly. Features advanced prompt engineering and content refinement capabilities.',
+    title: 'Hydrogen Fuel Cell Car Control System',
+    description: 'Arduino-based firmware for throttle control and H2 sensor monitoring with CAN communication.',
+    fullDescription: 'Developed embedded C firmware for the UBC Supermileage hydrogen fuel cell vehicle. The system interprets throttle and H2 sensor data, then outputs appropriate control signals to the motor controller and fuel cell control board.',
     media: [{
       type: 'image',
-      url: 'https://images.unsplash.com/photo-1557838923-2985c318be48?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
-      alt: 'Project thumbnail'
-    }, {
-      type: 'image',
-      url: 'https://images.unsplash.com/photo-1677442135136-760c813dce95?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
-      alt: 'AI interface'
-    }, {
-      type: 'video',
-      url: 'https://www.w3schools.com/html/mov_bbb.mp4',
-      alt: 'Demo video'
+      url: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+      alt: 'Fuel cell control system'
     }],
-    tags: ['Python', 'React', 'OpenAI API', 'FastAPI'],
+    tags: ['C', 'Arduino', 'CAN Bus', 'Embedded Systems', 'Fuel Cell'],
     codeUrl: '#',
     demoUrl: '#',
-    features: ['Multiple content types (blog posts, social media, emails)', 'Customizable tone and style settings', 'Content history and versioning', 'Export to various formats', 'SEO optimization suggestions', 'Collaborative editing'],
-    challenges: 'Optimizing API calls to balance response time and cost while maintaining high-quality output.',
-    outcome: 'Generated 100,000+ pieces of content, saving users an average of 5 hours per week in content creation.'
+    features: ['Real-time throttle data interpretation', 'H2 sensor data processing and monitoring', 'Control signal generation for motor controller', 'CAN communication module integration', 'Arduino Nano Every microcontroller implementation', 'Safety protocols for hydrogen handling'],
+    challenges: 'Ensuring reliable real-time communication between sensors, controllers, and the fuel cell system while maintaining safety standards.',
+    outcome: 'Successfully implemented firmware enabling smooth throttle control and hydrogen monitoring for the fuel cell vehicle.'
+  }, {
+    title: 'Dynamometer Interface',
+    description: 'C++ GUI application for custom dynamometer control board with Raspberry Pi Pico and touchscreen display.',
+    fullDescription: 'Built a comprehensive GUI interface for controlling and monitoring a custom dynamometer. The system uses a Raspberry Pi Pico microcontroller with a 3.2" touchscreen display to provide an intuitive user experience.',
+    media: [{
+      type: 'image',
+      url: 'https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+      alt: 'Dynamometer interface'
+    }],
+    tags: ['C++', 'Raspberry Pi Pico', 'GUI', 'Touchscreen'],
+    codeUrl: '#',
+    demoUrl: '#',
+    features: ['Custom GUI built in C++', 'Real-time data display and monitoring', 'Touch-based control interface', 'Raspberry Pi Pico microcontroller integration', '3.2" touchscreen display support', 'Dynamometer control and configuration'],
+    challenges: 'Designing an intuitive touch-based interface while managing real-time data processing on a resource-constrained microcontroller.',
+    outcome: 'Created a user-friendly control interface for the dynamometer, improving testing efficiency for the UBC Supermileage team.'
+  }, {
+    title: 'Binary to Seven Segment Display Decoder',
+    description: 'Logical circuit design to decode binary input into seven-segment display output, simulated in LTSpice.',
+    fullDescription: 'A personal project focused on digital logic design. Used Karnaugh maps to create and simplify boolean expressions before designing and simulating the circuit in LTSpice.',
+    media: [{
+      type: 'image',
+      url: 'https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+      alt: 'Circuit design'
+    }],
+    tags: ['Digital Logic', 'LTSpice', 'Circuit Design', 'Boolean Algebra'],
+    codeUrl: '#',
+    demoUrl: '#',
+    features: ['Binary to seven-segment conversion logic', 'Karnaugh map optimization', 'Boolean expression simplification', 'Complete circuit design', 'LTSpice simulation and testing', 'Functional verification'],
+    challenges: 'Optimizing the boolean logic to minimize component count while maintaining reliable operation.',
+    outcome: 'Successfully designed and verified a working binary to seven-segment decoder circuit (July - August 2024).'
+  }, {
+    title: 'YVR Smart Airport Hackathon',
+    description: 'Computer vision automation project using Raspberry Pi to interface with cameras and demonstrate automation potential.',
+    fullDescription: 'Participated in the YVR Smart Airport Hackathon, where the team set up a Raspberry Pi system to bridge physical cameras with computer vision software, demonstrating automation potential for airport operations.',
+    media: [{
+      type: 'image',
+      url: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-4.0.3&auto=format&fit=crop&w=2074&q=80',
+      alt: 'Airport automation'
+    }],
+    tags: ['Raspberry Pi', 'Computer Vision', 'Python', 'Automation'],
+    codeUrl: '#',
+    demoUrl: '#',
+    features: ['Raspberry Pi camera interfacing', 'Computer vision software integration', 'Real-time video processing', 'Automation demonstration for airport operations', 'Prototype development in hackathon timeframe', 'Team collaboration and presentation'],
+    challenges: 'Setting up reliable camera-to-software communication and processing pipeline within the hackathon time constraints.',
+    outcome: 'Successfully demonstrated computer vision automation potential for YVR airport operations (April 2024).'
   }];
-  return <section id="projects" className="py-8">
+  return <div className="py-8">
       <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-        A selection of projects I've worked on, from web applications to
-        open-source contributions.
+        A collection of personal and team projects spanning embedded systems,
+        PCB design, and software development.
       </p>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {projects.map((project, index) => <ProjectCard key={index} project={project} onClick={() => setExpandedProject(index)} />)}
       </div>
       {expandedProject !== null && <ProjectModal project={projects[expandedProject]} onClose={() => setExpandedProject(null)} />}
-    </section>;
+    </div>;
 }
 function ProjectCard({
   project,

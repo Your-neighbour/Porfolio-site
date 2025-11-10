@@ -8,7 +8,12 @@ export function Header() {
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({
+      const headerHeight = 64; // h-16 = 64px
+      const additionalOffset = 20; // Increased spacing for better visibility on smaller screens
+      const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+      const offsetPosition = elementPosition - headerHeight - additionalOffset;
+      window.scrollTo({
+        top: offsetPosition,
         behavior: 'smooth'
       });
       if (isMenuOpen) {
@@ -26,7 +31,7 @@ export function Header() {
             behavior: 'smooth'
           });
         }}>
-            DevPortfolio
+            Aaron Li
           </a>
         </div>
         {/* Desktop Navigation */}

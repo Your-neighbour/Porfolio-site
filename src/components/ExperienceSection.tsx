@@ -11,31 +11,24 @@ type ExperienceItem = {
 export function ExperienceSection() {
   const experiences: ExperienceItem[] = [{
     type: 'work',
-    title: 'Senior Software Engineer',
-    organization: 'TechCorp Inc.',
-    period: 'Jan 2021 - Present',
-    description: ['Led the development of a microservices architecture that improved system scalability by 200%', 'Mentored junior developers and conducted code reviews to maintain high code quality standards', 'Implemented CI/CD pipelines reducing deployment time from days to minutes'],
-    tags: ['React', 'Node.js', 'AWS', 'Docker']
-  }, {
-    type: 'work',
-    title: 'Full Stack Developer',
-    organization: 'Innovate Solutions',
-    period: 'Mar 2018 - Dec 2020',
-    description: ['Developed and maintained client-facing web applications using React and TypeScript', 'Built RESTful APIs using Express.js and integrated with various third-party services', 'Optimized database queries resulting in a 40% improvement in application response time'],
-    tags: ['JavaScript', 'React', 'Express', 'MongoDB']
+    title: 'Electrical Project Lead',
+    organization: 'UBC Supermileage',
+    period: 'September 2024 - Present',
+    description: ['Leading electrical systems design for Urban electric vehicle and hydrogen fuel cell car', 'Designed low power distribution system with custom PCB for 12V power distribution', 'Developed Arduino firmware in C for throttle control and H2 sensor data interpretation', 'Built GUI-based dynamometer interface using C++ on Raspberry Pi Pico with touchscreen display'],
+    tags: ['C/C++', 'PCB Design', 'Arduino', 'Raspberry Pi', 'CAN']
   }, {
     type: 'education',
-    title: 'B.S. Computer Science',
-    organization: 'Tech University',
-    period: 'Sep 2014 - May 2018',
-    description: ['Graduated with honors. Specialized in software engineering and distributed systems.'],
-    tags: []
+    title: 'Bachelor of Applied Science - Computer Engineering',
+    organization: 'University of British Columbia',
+    period: 'Expected May 2027',
+    description: ['3rd year Computer Engineering student focusing on embedded systems and hardware design', 'Technical skills: Python, C/C++, System Verilog, ARM Assembly', 'Tools: LTSpice, KiCAD, Git, Quartus, ModelSim'],
+    tags: ['Computer Engineering', 'Embedded Systems', 'Hardware Design']
   }];
-  return <section id="experience" className="py-8">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+  return <div className="py-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {experiences.map((item, index) => <ExperienceCard key={index} item={item} />)}
       </div>
-    </section>;
+    </div>;
 }
 function ExperienceCard({
   item
