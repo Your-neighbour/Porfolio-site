@@ -11,11 +11,11 @@ type Project = {
   fullDescription: string;
   media: MediaItem[];
   tags: string[];
-  codeUrl: string;
-  demoUrl: string;
+  codeUrl?: string;
+  demoUrl?: string;
   features: string[];
   challenges: string;
-  outcome: string;
+  outcome?: string;
 };
 export function ProjectsSection() {
   const [expandedProject, setExpandedProject] = useState<number | null>(null);
@@ -25,12 +25,18 @@ export function ProjectsSection() {
     fullDescription: 'A personal project to create a user-friendly reflow oven for assembling PCBs. Features custom-mounted thermocouple for temperature monitoring and ESP32-based PID control loop with solid state relay for precise heating element control.',
     media: [{
       type: 'image',
-      url: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+      url: '/projects/Toaster Reflow Oven/heating.jpg',
       alt: 'Reflow oven project'
-    }],
+    },
+    {
+      type: 'image',
+      url: '/projects/Toaster Reflow Oven/messy.jpg',
+      alt: 'Reflow oven project'
+    }
+  ],
     tags: ['ESP32', 'PID Control', 'PCB Assembly', 'Embedded Systems'],
-    codeUrl: '#',
-    demoUrl: '#',
+    // codeUrl: '#',
+    // demoUrl: '#',
     features: ['Custom mounted thermocouple for internal temperature monitoring', 'PID control loop using ESP32 microcontroller', 'Solid state relay for precise heating element control', 'User-friendly GUI for easy configuration', 'Configurable wave profiles for different PCB requirements', 'Real-time temperature monitoring and display'],
     challenges: 'Implementing accurate PID control to maintain precise temperature profiles required for proper solder reflow, while ensuring safety and reliability.',
     outcome: 'Currently in development (July 2025 - Present). Aiming to create a cost-effective solution for PCB assembly.'
@@ -40,27 +46,42 @@ export function ProjectsSection() {
     fullDescription: 'Designed a comprehensive power distribution system for the UBC Supermileage electric vehicle. The project involved selecting appropriate DC-DC converters, designing connector systems, planning wiring layouts, and implementing electrical noise reduction.',
     media: [{
       type: 'image',
-      url: 'https://images.unsplash.com/photo-1581092918484-8313e1f7e8c6?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
-      alt: 'PCB design'
+      url: '/projects/Urban LPD/render.jpg',
+      alt: 'Low Power Distribution Board'
+    },
+    {
+      type: 'image',
+      url: '/projects/Urban LPD/schem.png',
+      alt: 'Low Power Distribution Board'
+    },
+    {
+      type: 'image',
+      url: '/projects/Urban LPD/schem2.png',
+      alt: 'Low Power Distribution Board'
     }],
     tags: ['PCB Design', 'KiCAD', 'Power Systems', 'Electric Vehicle'],
-    codeUrl: '#',
-    demoUrl: '#',
+    // codeUrl: '#',
+    // demoUrl: '#',
     features: ['Custom PCB design for power distribution', 'DC-DC converter selection and integration', 'Optimized connector system design', 'Electrical noise reduction implementation', 'Efficient wiring layout for 12V distribution', 'Integration with vehicle electrical systems'],
     challenges: 'Designing a reliable power distribution system that minimizes electrical noise while maintaining efficiency across multiple vehicle subsystems.',
     outcome: 'Successfully designed and assembled custom PCB supporting the distribution system for UBC Supermileage electric vehicle.'
   }, {
-    title: 'Hydrogen Fuel Cell Car Control System',
+    title: 'Hydrogen Fuel Cell Car Control And Safety System',
     description: 'Arduino-based firmware for throttle control and H2 sensor monitoring with CAN communication.',
     fullDescription: 'Developed embedded C firmware for the UBC Supermileage hydrogen fuel cell vehicle. The system interprets throttle and H2 sensor data, then outputs appropriate control signals to the motor controller and fuel cell control board.',
     media: [{
       type: 'image',
-      url: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+      url: '/projects/H2 Throttle/jank.jpg',
+      alt: 'Fuel cell control system'
+    },
+   {
+      type: 'image',
+      url: '/projects/H2 Throttle/throttle.png',
       alt: 'Fuel cell control system'
     }],
     tags: ['C', 'Arduino', 'CAN Bus', 'Embedded Systems', 'Fuel Cell'],
-    codeUrl: '#',
-    demoUrl: '#',
+    // codeUrl: '#',
+    // demoUrl: '#',
     features: ['Real-time throttle data interpretation', 'H2 sensor data processing and monitoring', 'Control signal generation for motor controller', 'CAN communication module integration', 'Arduino Nano Every microcontroller implementation', 'Safety protocols for hydrogen handling'],
     challenges: 'Ensuring reliable real-time communication between sensors, controllers, and the fuel cell system while maintaining safety standards.',
     outcome: 'Successfully implemented firmware enabling smooth throttle control and hydrogen monitoring for the fuel cell vehicle.'
@@ -70,12 +91,12 @@ export function ProjectsSection() {
     fullDescription: 'Built a comprehensive GUI interface for controlling and monitoring a custom dynamometer. The system uses a Raspberry Pi Pico microcontroller with a 3.2" touchscreen display to provide an intuitive user experience.',
     media: [{
       type: 'image',
-      url: 'https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+      url: '/projects/dynoGUI/code.png',
       alt: 'Dynamometer interface'
     }],
     tags: ['C++', 'Raspberry Pi Pico', 'GUI', 'Touchscreen'],
-    codeUrl: '#',
-    demoUrl: '#',
+    // codeUrl: '#',
+    // demoUrl: '#',
     features: ['Custom GUI built in C++', 'Real-time data display and monitoring', 'Touch-based control interface', 'Raspberry Pi Pico microcontroller integration', '3.2" touchscreen display support', 'Dynamometer control and configuration'],
     challenges: 'Designing an intuitive touch-based interface while managing real-time data processing on a resource-constrained microcontroller.',
     outcome: 'Created a user-friendly control interface for the dynamometer, improving testing efficiency for the UBC Supermileage team.'
@@ -85,30 +106,46 @@ export function ProjectsSection() {
     fullDescription: 'A personal project focused on digital logic design. Used Karnaugh maps to create and simplify boolean expressions before designing and simulating the circuit in LTSpice.',
     media: [{
       type: 'image',
-      url: 'https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
-      alt: 'Circuit design'
-    }],
+      url: 'public/projects/Binary27seg/ltspice.png',
+      alt: '7 Segment Display Decoder'
+    },
+    {
+      type: 'image',
+      url: 'public/projects/Binary27seg/pinout.jpg',
+      alt: '7 Segment Display Decoder'
+    }
+  ],
     tags: ['Digital Logic', 'LTSpice', 'Circuit Design', 'Boolean Algebra'],
-    codeUrl: '#',
-    demoUrl: '#',
+    // codeUrl: '#',
+    // demoUrl: '#',
     features: ['Binary to seven-segment conversion logic', 'Karnaugh map optimization', 'Boolean expression simplification', 'Complete circuit design', 'LTSpice simulation and testing', 'Functional verification'],
     challenges: 'Optimizing the boolean logic to minimize component count while maintaining reliable operation.',
     outcome: 'Successfully designed and verified a working binary to seven-segment decoder circuit (July - August 2024).'
   }, {
-    title: 'YVR Smart Airport Hackathon',
-    description: 'Computer vision automation project using Raspberry Pi to interface with cameras and demonstrate automation potential.',
-    fullDescription: 'Participated in the YVR Smart Airport Hackathon, where the team set up a Raspberry Pi system to bridge physical cameras with computer vision software, demonstrating automation potential for airport operations.',
+    title: 'Simple RISC Processor',
+    description: 'Developed a functional System Verilog CPU capable of executing simple RISC instructions on an FPGA',
+    fullDescription: 'Developed the datapath and statemachine controller for a RISC processor that could load and store data, execute instructions, and interpret branches and functions in assembly. Made and used both RTL and gate level testbenches to verify functionality on an FPGA board.',
     media: [{
       type: 'image',
-      url: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-4.0.3&auto=format&fit=crop&w=2074&q=80',
-      alt: 'Airport automation'
-    }],
-    tags: ['Raspberry Pi', 'Computer Vision', 'Python', 'Automation'],
-    codeUrl: '#',
-    demoUrl: '#',
-    features: ['Raspberry Pi camera interfacing', 'Computer vision software integration', 'Real-time video processing', 'Automation demonstration for airport operations', 'Prototype development in hackathon timeframe', 'Team collaboration and presentation'],
-    challenges: 'Setting up reliable camera-to-software communication and processing pipeline within the hackathon time constraints.',
-    outcome: 'Successfully demonstrated computer vision automation potential for YVR airport operations (April 2024).'
+      url: '/projects/RISC/datapath.png',
+      alt: 'RISC Processor'
+    },
+  {
+      type: 'image',
+      url: '/projects/RISC/fsm.png',
+      alt: 'RISC Processor'
+  },
+  {
+      type: 'image',
+      url: '/projects/RISC/fsm_ns.png',
+      alt: 'RISC Processor'
+  }
+  ],
+    tags: ['System Verilog', 'Quartus + ModelSim', 'FPGA'],
+    // codeUrl: '#',
+    // demoUrl: '#',
+    features: ['Turing-complete instruction set', 'Runs ARM Assembly programs', 'Real-time FPGA execution'],
+    challenges: 'Developing the complex statemachine module and the associated verification considerations for comprehensive testing.',
   }];
   return <div className="py-8">
       <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
@@ -202,7 +239,7 @@ function ProjectModal({
           </div>
           <div className="p-6">
             <div className="aspect-video w-full overflow-hidden relative rounded-lg mb-6">
-              {currentMedia.type === 'image' ? <img src={currentMedia.url} alt={currentMedia.alt || 'Project media'} className="w-full h-full object-cover" /> : <video src={currentMedia.url} controls className="w-full h-full object-cover" aria-label={currentMedia.alt || 'Project video'} />}
+              {currentMedia.type === 'image' ? <img src={currentMedia.url} alt={currentMedia.alt || 'Project media' } loading="eager" className="w-full h-full object-cover" /> : <video src={currentMedia.url} controls className="w-full h-full object-cover" aria-label={currentMedia.alt || 'Project video'} />}
               {project.media.length > 1 && <>
                   <button onClick={prevMedia} className="absolute left-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-background/90 hover:bg-background transition-colors" aria-label="Previous media">
                     <ChevronLeft size={24} />
@@ -237,20 +274,41 @@ function ProjectModal({
                 </h3>
                 <p className="text-muted-foreground">{project.challenges}</p>
               </div>
-              <div>
-                <h3 className="text-xl font-semibold mb-2">Outcome</h3>
-                <p className="text-muted-foreground">{project.outcome}</p>
-              </div>
-              <div className="flex space-x-4 pt-4 border-t">
-                <a href={project.codeUrl} className="flex items-center px-4 py-2 bg-accent hover:bg-accent/80 rounded-md transition-colors" aria-label="View project code on GitHub">
-                  <Github size={18} className="mr-2" />
-                  View Code
-                </a>
-                <a href={project.demoUrl} className="flex items-center px-4 py-2 bg-primary text-primary-foreground hover:bg-primary/90 rounded-md transition-colors" aria-label="View live demo">
-                  <ExternalLink size={18} className="mr-2" />
-                  Live Demo
-                </a>
-              </div>
+                {project.outcome && (
+                  <div>
+                    <h3 className="text-xl font-semibold mb-2">Outcome</h3>
+                    <p className="text-muted-foreground">{project.outcome}</p>
+                  </div>
+                )}
+              {(project.codeUrl || project.demoUrl) && (
+                <div className="flex flex-wrap gap-4 pt-4 border-t">
+                  {project.codeUrl && (
+                    <a
+                      href={project.codeUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center px-4 py-2 bg-accent hover:bg-accent/80 rounded-md transition-colors"
+                      aria-label="View project code on GitHub"
+                    >
+                      <Github size={18} className="mr-2" />
+                      View Code
+                    </a>
+                  )}
+
+                  {project.demoUrl && (
+                    <a
+                      href={project.demoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center px-4 py-2 bg-primary text-primary-foreground hover:bg-primary/90 rounded-md transition-colors"
+                      aria-label="View live demo"
+                    >
+                      <ExternalLink size={18} className="mr-2" />
+                      Live Demo
+                    </a>
+                  )}
+                </div>
+              )}
             </div>
           </div>
         </div>
