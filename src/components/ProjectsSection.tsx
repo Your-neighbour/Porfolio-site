@@ -106,12 +106,12 @@ export function ProjectsSection() {
     fullDescription: 'A personal project focused on digital logic design. Used Karnaugh maps to create and simplify boolean expressions before designing and simulating the circuit in LTSpice.',
     media: [{
       type: 'image',
-      url: 'public/projects/Binary27seg/ltspice.png',
+      url: '/projects/Binary27seg/ltspice.png',
       alt: '7 Segment Display Decoder'
     },
     {
       type: 'image',
-      url: 'public/projects/Binary27seg/pinout.jpg',
+      url: '/projects/Binary27seg/pinout.jpg',
       alt: '7 Segment Display Decoder'
     }
   ],
