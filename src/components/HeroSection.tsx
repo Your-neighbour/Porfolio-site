@@ -106,7 +106,7 @@ export function HeroSection() {
             </div>
             <div className="flex space-x-4 mb-8">
               <a
-                href="www.linkedin.com/in/aaron-li-2771a4244"
+                href="https://www.linkedin.com/in/aaron-li-2771a4244"
                 className="p-2 rounded-full border border-border hover:bg-accent transition-colors"
                 aria-label="LinkedIn profile"
               >

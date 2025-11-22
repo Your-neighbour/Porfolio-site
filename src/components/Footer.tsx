@@ -21,7 +21,7 @@ export function Footer() {
           </div>
           <div className="flex flex-col items-start md:items-end">
             <div className="flex space-x-4 mb-6">
-              <a href="www.linkedin.com/in/aaron-li-2771a4244" className="p-2 rounded-full border border-border hover:bg-accent transition-colors" aria-label="LinkedIn profile">
+              <a href="https://www.linkedin.com/in/aaron-li-2771a4244" className="p-2 rounded-full border border-border hover:bg-accent transition-colors" aria-label="LinkedIn profile">
                 <Linkedin size={20} />
               </a>
             </div>
