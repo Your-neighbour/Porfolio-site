@@ -16,10 +16,10 @@ const TILE_LAYOUT = [
 const byId = (id: string) => projects.find((p) => p.id === id);
 
 const TILES: Tile[] = [
-  { image: 'img/lpd-render.webp', title: featuredProject.title, caption: 'Raced at Shell Eco-marathon 2026', project: featuredProject },
-  { image: 'img/reflow-heating.webp', title: 'PID Reflow Oven', caption: 'Personal project', project: byId('reflow') },
-  { image: 'img/h2-bench.webp', title: 'Fuel-Cell Throttle Firmware', caption: 'UBC Supermileage', project: byId('h2') },
-  { image: 'img/supergang.webp', title: 'UBC Supermileage', caption: 'Power Systems Co-Lead', target: 'experience' },
+  { image: 'img/lpd-assembled.webp', title: featuredProject.title, caption: 'Raced at Shell Eco-marathon 2026', project: featuredProject },
+  { image: 'img/f1tenth-car.webp', title: 'Autonomous Race Car', caption: 'ROS2 · LiDAR · PyTorch', project: byId('f1tenth') },
+  { image: 'img/eload-bench.webp', title: 'DC Electronic Load', caption: 'Personal project', project: byId('dc-load') },
+  { image: 'img/urban-track.webp', title: 'UBC Supermileage', caption: 'Shell Eco-marathon Americas 2026', target: 'experience' },
 ];
 
 export function HeroSection({ onOpenProject }: { onOpenProject: (p: Project) => void }) {
@@ -38,7 +38,7 @@ export function HeroSection({ onOpenProject }: { onOpenProject: (p: Project) => 
               <img
                 src={asset('img/profile.webp')}
                 alt="Aaron Li"
-                className="h-20 w-20 flex-none rounded-2xl border border-border object-cover shadow-lg sm:h-24 sm:w-24"
+                className="h-20 w-20 flex-none rounded-2xl border border-border object-cover shadow-lg sm:h-28 sm:w-28"
               />
               <div>
                 <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl">{profile.name}</h1>
@@ -71,14 +71,14 @@ export function HeroSection({ onOpenProject }: { onOpenProject: (p: Project) => 
                   ))}
                   <div className="pt-2">
                     <p className="eyebrow mb-2">Outside the lab</p>
-                    <div className="grid grid-cols-3 gap-2">
+                    <div className="grid grid-cols-2 gap-2">
                       {outsideTheLab.map((m) => (
                         <img
                           key={m.url}
                           src={asset(m.url)}
                           alt={m.alt}
                           loading="lazy"
-                          className="aspect-square w-full rounded-lg border border-border object-cover"
+                          className="aspect-[4/3] w-full rounded-lg border border-border object-cover"
                         />
                       ))}
                     </div>
@@ -135,9 +135,7 @@ export function HeroSection({ onOpenProject }: { onOpenProject: (p: Project) => 
                 <img
                   src={asset(t.image)}
                   alt={t.title}
-                  className={`absolute inset-0 h-full w-full transition duration-500 group-hover:scale-105 ${
-                    i === 0 ? 'bg-[#dfe3ea] object-contain p-3' : i === 3 ? 'object-cover object-[center_72%]' : 'object-cover'
-                  }`}
+                  className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105"
                 />
                 <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent p-3 pt-10 sm:p-4 sm:pt-12">
                   <p className="text-sm font-semibold leading-tight text-white sm:text-base">{t.title}</p>

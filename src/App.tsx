@@ -5,7 +5,6 @@ import { ExperienceSection } from './components/ExperienceSection';
 import { ProjectModal, ProjectsSection } from './components/ProjectsSection';
 import { SkillsSection } from './components/SkillsSection';
 import { Footer } from './components/Footer';
-import { ThemePreviewSwitcher } from './components/ThemePreviewSwitcher';
 import type { Project } from './data/content';
 
 function Section({
@@ -55,7 +54,6 @@ export function App() {
       </main>
       <Footer />
       {openProject && <ProjectModal project={openProject} onClose={() => setOpenProject(null)} />}
-      {import.meta.env.VITE_THEME_PREVIEW === '1' && <ThemePreviewSwitcher />}
     </div>
   );
 }

@@ -11,7 +11,7 @@ export const profile = {
     'I build things that work in the real world, from circuit boards and firmware to engineering tools, and I like leading the teams that build them.',
   about: [
     'I’m a Computer Engineering co-op student at UBC. The work I enjoy most spans the whole path from idea to working system: designing it, building it, testing it on the bench and seeing it hold up in use.',
-    'At UBC Supermileage I co-lead the Power Systems division. The power distribution board I designed helped the team complete its first-ever successful run at Shell Eco-marathon Americas in April 2026.',
+    'At UBC Supermileage I co-lead the Power Systems division. The power distribution board I co-designed helped the team complete its first-ever successful run at Shell Eco-marathon Americas in April 2026.',
     'I spent eight months at Phasor Engineering in Calgary as a substations electrical co-op, building engineering tools, including a rigid bus design template that is now being rolled out on client projects.',
     'As one of ECESS’s Vice Presidents of External Relations, I’ve organized industry panel talks and brought on sponsors for the society, and I’m now organizing our career fair and a student career trip to Toronto.',
     'On my own time I keep a couple of personal projects going, currently a programmable DC electronic load and a PID-controlled reflow oven.',
@@ -34,7 +34,7 @@ export type ExperienceItem = {
   summary: string;
   highlights: { heading?: string; points: string[] }[];
   tags: string[];
-  image?: string;
+  images?: MediaItem[];
 };
 
 export const experience: ExperienceItem[] = [
@@ -48,7 +48,7 @@ export const experience: ExperienceItem[] = [
       { title: 'Electrical Project Lead', period: 'Sep 2024 – Jul 2026' },
     ],
     summary:
-      'Co-lead the 6-member Power Systems division of a student team building ultra-efficient electric and hydrogen vehicles. My power distribution PCB helped the team complete its first-ever successful Shell Eco-marathon Americas run.',
+      'Co-lead the 6-member Power Systems division of a student team building ultra-efficient electric and hydrogen vehicles. The power distribution PCB I co-designed helped the team complete its first-ever successful Shell Eco-marathon Americas run.',
     highlights: [
       {
         heading: 'Division leadership',
@@ -60,13 +60,16 @@ export const experience: ExperienceItem[] = [
       {
         heading: 'Hardware & firmware',
         points: [
-          'Designed, assembled and integrated the vehicle’s low-voltage power distribution PCB, enabling the team’s first-ever successful run at Shell Eco-marathon Americas (April 2026): 49 km/kWh, 9th of 14 battery-electric urban concept teams',
+          'Co-designed, assembled and integrated the vehicle’s low-voltage power distribution PCB, enabling the team’s first-ever successful run at Shell Eco-marathon Americas (April 2026): 49 km/kWh, 9th of 14 battery-electric urban concept teams',
           'Wrote CAN-based throttle and hydrogen-sensor firmware for the fuel-cell vehicle, including a hardware shutdown on elevated H₂ concentration',
         ],
       },
     ],
     tags: ['PCB Design', 'Power Electronics', 'CAN', 'C/C++', 'Team Leadership'],
-    image: 'img/supergang.webp',
+    images: [
+      { url: 'img/urban-track.webp', alt: 'UBC Supermileage urban vehicle on track at Shell Eco-marathon Americas 2026' },
+      { url: 'img/supergang.webp', alt: 'UBC Supermileage team photo', position: 'center 70%' },
+    ],
   },
   {
     id: 'ecess',
@@ -87,6 +90,7 @@ export const experience: ExperienceItem[] = [
       },
     ],
     tags: ['Industry Relations', 'Sponsorship', 'Event Planning', 'Career Fair'],
+    images: [{ url: 'img/ecess-talk.webp', alt: 'Industry talk organized by ECESS for UBC engineering students' }],
   },
   {
     id: 'phasor',
@@ -134,7 +138,14 @@ export const experience: ExperienceItem[] = [
   },
 ];
 
-export type MediaItem = { url: string; alt: string };
+export type MediaItem = {
+  url: string;
+  alt: string;
+  type?: 'image' | 'video';
+  poster?: string; // video only
+  fit?: 'cover' | 'contain'; // contain for diagrams/schematics
+  position?: string; // CSS object-position, e.g. 'center 30%'
+};
 
 export type Project = {
   id: string;
@@ -162,19 +173,20 @@ export const featuredProject: Project = {
   summary:
     'A 2-layer board that steps the main battery bus down to 12V for three vehicle subsystems. It replaced a connector system that kept failing under vibration.',
   description:
-    'The urban battery-electric vehicle’s old low-voltage distribution used non-automotive connectors that failed after repeated use and vibration. I redesigned the system from the converter up: selecting the DC-DC converter, an automotive-grade connector system, wiring and noise-suppression components, then laying out, assembling and bench-testing the board before integrating it into the car.',
+    'The urban battery-electric vehicle’s old low-voltage distribution used non-automotive connectors that failed after repeated use and vibration. We redesigned the system from the converter up. I selected the DC-DC converter, the automotive-grade connector system, wiring and noise-suppression components, co-designed the board, then assembled and bench-tested it before it went into the car.',
   highlights: [
     'Rated for 60V input and 13A continuous output on a 12V rail',
     'Three 12V outputs feeding front accessories, rear accessories and telemetry',
     'Automotive-grade connectors chosen specifically to survive vibration',
-    'Designed in KiCad, hand-assembled and bench-tested before vehicle integration',
+    'Co-designed in KiCad, hand-assembled and bench-tested before vehicle integration',
   ],
   result:
     'Enabled the team’s first-ever successful run at Shell Eco-marathon Americas (April 2026): 49 km/kWh, placing 9th of 14 battery-electric urban concept teams.',
   media: [
-    { url: 'img/lpd-render.webp', alt: '3D render of the power distribution PCB' },
-    { url: 'img/lpd-schem.webp', alt: 'Power distribution schematic, converter stage' },
-    { url: 'img/lpd-schem2.webp', alt: 'Power distribution schematic, output stage' },
+    { url: 'img/lpd-assembled.webp', alt: 'Assembled power distribution PCB powered up in its enclosure' },
+    { url: 'img/urban-track-pit.webp', alt: 'UBC Supermileage urban vehicle on track at Shell Eco-marathon Americas 2026' },
+    { url: 'img/lpd-schem.webp', alt: 'Power distribution schematic, converter stage', fit: 'contain' },
+    { url: 'img/lpd-schem2.webp', alt: 'Power distribution schematic, output stage', fit: 'contain' },
   ],
   tags: ['KiCad', 'PCB Design', 'DC-DC', 'Automotive Connectors', 'Bring-up'],
 };
@@ -197,8 +209,10 @@ export const projects: Project[] = [
     ],
     lessons:
       'Thermal characterization showed a single CPU cooler couldn’t dissipate more than about 200W at safe MOSFET temperatures. That invalidated my original thermal assumptions for a cheap, compact build, and the cooling approach is now being redesigned before the full system is built.',
-    media: [],
-    fallbackIcon: 'load',
+    media: [
+      { url: 'img/eload-bench.webp', alt: 'Electronic load prototype under test on the bench' },
+      { url: 'img/eload-heatsink.webp', alt: 'MOSFET heatsink with thermistor for thermal characterization' },
+    ],
     tags: ['Power Electronics', 'MOSFETs', 'Thermal Design', 'Control Loops'],
   },
   {
@@ -244,7 +258,7 @@ export const projects: Project[] = [
     result: 'Bench-verified and integrated into the hydrogen fuel-cell vehicle.',
     media: [
       { url: 'img/h2-bench.webp', alt: 'Throttle and H2 sensor firmware bench setup' },
-      { url: 'img/h2-code.webp', alt: 'Throttle firmware source code' },
+      { url: 'img/h2-code.webp', alt: 'Throttle firmware source code', fit: 'contain' },
     ],
     tags: ['C/C++', 'CAN Bus', 'SPI', 'MCP2515', 'Arduino'],
   },
@@ -263,8 +277,10 @@ export const projects: Project[] = [
       'Obstacle avoidance with a fail-safe emergency braking layer to prevent collisions',
       'Trained a PyTorch neural network for driving, automating training-data generation and inference preprocessing',
     ],
-    media: [],
-    fallbackIcon: 'car',
+    media: [
+      { url: 'img/f1tenth-car.webp', alt: 'F1TENTH car with LiDAR and depth camera', position: 'center 45%' },
+      { url: 'img/f1tenth-run.mp4', alt: 'The car driving autonomously around obstacles', type: 'video', poster: 'img/f1tenth-run-poster.webp' },
+    ],
     tags: ['Python', 'ROS2', 'PyTorch', 'LiDAR', 'Linux'],
   },
 ];
@@ -285,9 +301,9 @@ export const earlierProjects: Project[] = [
       'Runs assembly programs on an FPGA',
     ],
     media: [
-      { url: 'img/risc-datapath.webp', alt: 'RISC processor datapath' },
-      { url: 'img/risc-fsm.webp', alt: 'Controller state machine' },
-      { url: 'img/risc-fsm-ns.webp', alt: 'Next-state logic' },
+      { url: 'img/risc-datapath.webp', alt: 'RISC processor datapath', fit: 'contain' },
+      { url: 'img/risc-fsm.webp', alt: 'Controller state machine', fit: 'contain' },
+      { url: 'img/risc-fsm-ns.webp', alt: 'Next-state logic', fit: 'contain' },
     ],
     tags: ['SystemVerilog', 'Quartus', 'ModelSim', 'FPGA'],
   },
@@ -301,7 +317,7 @@ export const earlierProjects: Project[] = [
     description:
       'Wrote C++ to render a touchscreen GUI on a 3.2" display for the team’s Pico-based dynamometer control board. The dyno project was later discontinued by the team.',
     highlights: ['C++ on Raspberry Pi Pico', '3.2" touchscreen GUI rendering'],
-    media: [{ url: 'img/dyno-code.webp', alt: 'Dynamometer GUI source code' }],
+    media: [{ url: 'img/dyno-code.webp', alt: 'Dynamometer GUI source code', fit: 'contain' }],
     tags: ['C++', 'Raspberry Pi Pico', 'GUI'],
   },
   {
@@ -315,8 +331,8 @@ export const earlierProjects: Project[] = [
       'An early personal project in digital logic. I used Karnaugh maps to derive and simplify the boolean expressions, then built and simulated the full circuit in LTspice.',
     highlights: ['K-map logic minimization', 'Full circuit simulation in LTspice'],
     media: [
-      { url: 'img/7seg-ltspice.webp', alt: 'LTspice simulation of the decoder' },
-      { url: 'img/7seg-pinout.webp', alt: 'Seven-segment display pinout' },
+      { url: 'img/7seg-ltspice.webp', alt: 'LTspice simulation of the decoder', fit: 'contain' },
+      { url: 'img/7seg-pinout.webp', alt: 'Seven-segment display pinout', fit: 'contain' },
     ],
     tags: ['Digital Logic', 'LTspice'],
   },
@@ -350,5 +366,4 @@ export const skills: { group: string; items: string[] }[] = [
 export const outsideTheLab: MediaItem[] = [
   { url: 'img/squam.webp', alt: 'Bouldering in Squamish' },
   { url: 'img/strut.webp', alt: 'Out exploring' },
-  { url: 'img/ubc.webp', alt: 'UBC campus from above' },
 ];

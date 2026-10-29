@@ -61,7 +61,7 @@ function FeaturedProject({ project, onOpen }: { project: Project; onOpen: () => 
     <article className="overflow-hidden rounded-2xl border border-primary/30 bg-card shadow-[0_0_0_1px_hsl(var(--primary)/0.05),0_20px_60px_-30px_hsl(var(--primary)/0.4)]">
       <div className="grid grid-cols-1 lg:grid-cols-2">
         <div className="relative bg-muted">
-          <MediaCarousel media={project.media} className="aspect-[4/3] lg:aspect-auto lg:h-full" fit="contain" />
+          <MediaCarousel media={project.media} className="aspect-square lg:aspect-auto lg:h-full lg:min-h-[28rem]" />
           <span className="absolute left-4 top-4 rounded-full bg-primary px-3 py-1 font-mono text-[11px] font-semibold uppercase tracking-wider text-primary-foreground">
             Flagship project
           </span>
@@ -193,14 +193,30 @@ function MediaCarousel({
     setI((prev) => (prev + d + media.length) % media.length);
   };
   const m = media[i];
+  // Modals show everything uncropped; cards crop photos but keep diagrams whole.
+  const mode = large ? 'contain' : m.fit ?? fit;
+  const mediaCls = `h-full w-full ${mode === 'contain' ? 'object-contain p-3' : 'object-cover'} transition-transform duration-500`;
   return (
     <div className={`relative w-full overflow-hidden bg-muted ${className}`}>
-      <img
-        src={asset(m.url)}
-        alt={m.alt}
-        loading="lazy"
-        className={`h-full w-full ${fit === 'contain' ? 'object-contain p-4' : 'object-cover'} transition-transform duration-500`}
-      />
+      {m.type === 'video' ? (
+        <video
+          key={m.url}
+          src={asset(m.url)}
+          poster={m.poster ? asset(m.poster) : undefined}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          controls={large}
+          aria-label={m.alt}
+          className={mediaCls}
+          style={{ objectPosition: m.position }}
+          onClick={(e) => large && e.stopPropagation()}
+        />
+      ) : (
+        <img src={asset(m.url)} alt={m.alt} loading="lazy" className={mediaCls} style={{ objectPosition: m.position }} />
+      )}
       {media.length > 1 && (
         <>
           <button
@@ -267,7 +283,7 @@ export function ProjectModal({ project, onClose }: { project: Project; onClose: 
 
           <div className="p-6">
             {project.media.length > 0 ? (
-              <MediaCarousel media={project.media} className="mb-6 aspect-video rounded-xl" fit="contain" large />
+              <MediaCarousel media={project.media} className="mb-6 aspect-video rounded-xl" large />
             ) : (
               <FallbackVisual icon={project.fallbackIcon} className="mb-6 aspect-[21/9] rounded-xl" />
             )}

@@ -105,13 +105,21 @@ function ExperienceCard({ item, isOpen, onToggle }: { item: ExperienceItem; isOp
                   </div>
                 ))}
               </div>
-              {item.image && (
-                <img
-                  src={asset(item.image)}
-                  alt={`${item.organization} team`}
-                  loading="lazy"
-                  className="mt-6 h-48 w-full rounded-xl border border-border object-cover object-[center_35%] md:h-64"
-                />
+              {item.images && item.images.length > 0 && (
+                <div className={`mt-6 grid gap-3 ${item.images.length > 1 ? 'sm:grid-cols-2' : ''}`}>
+                  {item.images.map((img) => (
+                    <img
+                      key={img.url}
+                      src={asset(img.url)}
+                      alt={img.alt}
+                      loading="lazy"
+                      style={{ objectPosition: img.position }}
+                      className={`w-full rounded-xl border border-border object-cover ${
+                        item.images!.length > 1 ? 'h-48 md:h-56' : 'h-56 md:h-80'
+                      }`}
+                    />
+                  ))}
+                </div>
               )}
               {item.tags.length > 0 && (
                 <div className="mt-6 flex flex-wrap gap-2">
