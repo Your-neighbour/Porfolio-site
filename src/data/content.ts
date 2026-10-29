@@ -11,7 +11,7 @@ export const profile = {
     'I build things that work in the real world, from circuit boards and firmware to engineering tools, and I like leading the teams that build them.',
   about: [
     'I’m a Computer Engineering co-op student at UBC. The work I enjoy most spans the whole path from idea to working system: designing it, building it, testing it on the bench and seeing it hold up in use.',
-    'At UBC Supermileage I co-lead the 6-member Power Systems division. This year we’re working on three hardware projects: a revision of our custom 48V BLDC motor controller, a custom-assembled 48V battery pack, and a new high-power 24V buck-boost DC-DC converter designed from scratch. Before that, the power distribution board I co-designed helped the team complete its first-ever successful run at Shell Eco-marathon Americas in April 2026.',
+    'At UBC Supermileage I co-lead the 6-member Power Systems division. This year we’re working on three hardware projects: a revision of our custom 48V BLDC motor controller, a custom-assembled 48V battery pack, and a new high-power 24V buck-boost DC-DC converter designed from scratch, which I’m building hands-on end to end. Before that, the power distribution board I co-designed helped the team complete its first-ever successful run at Shell Eco-marathon Americas in April 2026.',
     'I spent eight months at Phasor Engineering in Calgary as a substations electrical co-op, building engineering tools, including a rigid bus design template that is now being rolled out on client projects.',
     'As one of ECESS’s Vice Presidents of External Relations, I’ve organized industry panel talks and brought on sponsors for the society, and I’m now organizing our career fair and a student career trip to Toronto.',
     'On my own time I keep a couple of personal projects going, currently a programmable DC electronic load and a PID-controlled reflow oven.',
@@ -48,7 +48,7 @@ export const experience: ExperienceItem[] = [
       { title: 'Electrical Project Lead', period: 'Sep 2024 – Jul 2026' },
     ],
     summary:
-      'Co-lead the 6-member Power Systems division of a student team building ultra-efficient electric and hydrogen vehicles. Currently leading three hardware projects: a 48V motor controller revision, a custom 48V battery pack and a new 24V buck-boost converter.',
+      'Co-lead the 6-member Power Systems division of a student team building ultra-efficient electric and hydrogen vehicles. Currently leading a 48V motor controller revision and a custom 48V battery pack, and designing a new 24V buck-boost converter hands-on, end to end.',
     highlights: [
       {
         heading: 'Division leadership',
@@ -61,6 +61,7 @@ export const experience: ExperienceItem[] = [
         heading: 'Hardware & firmware',
         points: [
           'Co-designed, assembled and integrated the vehicle’s low-voltage power distribution PCB, enabling the team’s first-ever successful run at Shell Eco-marathon Americas (April 2026): 49 km/kWh, 9th of 14 battery-electric urban concept teams',
+          'Designing a new high-power 24V buck-boost DC-DC converter from scratch, doing the hands-on work end to end (in progress)',
           'Wrote CAN-based throttle and hydrogen-sensor firmware for the fuel-cell vehicle, including a hardware shutdown on elevated H₂ concentration',
         ],
       },
