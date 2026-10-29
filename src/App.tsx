@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Header } from './components/Header';
 import { HeroSection } from './components/HeroSection';
-import { AboutSection } from './components/AboutSection';
 import { ExperienceSection } from './components/ExperienceSection';
-import { ProjectsSection } from './components/ProjectsSection';
+import { ProjectModal, ProjectsSection } from './components/ProjectsSection';
 import { SkillsSection } from './components/SkillsSection';
 import { Footer } from './components/Footer';
+import { ThemePreviewSwitcher } from './components/ThemePreviewSwitcher';
+import type { Project } from './data/content';
 
 function Section({
   id,
@@ -21,11 +22,11 @@ function Section({
   children: React.ReactNode;
 }) {
   return (
-    <section id={id} className="scroll-mt-20 py-16 md:py-20">
-      <div className="mb-10 max-w-2xl">
+    <section id={id} className="scroll-mt-20 py-14 md:py-16">
+      <div className="mb-8 max-w-2xl">
         <p className="eyebrow mb-3">{eyebrow}</p>
         <h2 className="section-title">{title}</h2>
-        {intro && <p className="mt-4 text-muted-foreground">{intro}</p>}
+        {intro && <p className="mt-3 text-muted-foreground">{intro}</p>}
       </div>
       {children}
     </section>
@@ -33,37 +34,28 @@ function Section({
 }
 
 export function App() {
+  const [openProject, setOpenProject] = useState<Project | null>(null);
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
       <main>
-        <HeroSection />
+        <HeroSection onOpenProject={setOpenProject} />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <Section id="about" eyebrow="01 / About" title="Hardware first, with firmware where it counts.">
-            <AboutSection />
+          <Section id="projects" eyebrow="01 / Projects" title="Selected projects" intro="Open any project for the full write-up.">
+            <ProjectsSection onOpen={setOpenProject} />
           </Section>
-          <Section
-            id="experience"
-            eyebrow="02 / Experience"
-            title="Experience & leadership"
-            intro="Industry co-op work, design-team engineering and student leadership."
-          >
+          <Section id="experience" eyebrow="02 / Experience" title="Experience & leadership">
             <ExperienceSection />
           </Section>
-          <Section
-            id="projects"
-            eyebrow="03 / Projects"
-            title="Things I've built"
-            intro="Team and personal hardware projects. Open any card for the full story, including what didn't work the first time."
-          >
-            <ProjectsSection />
-          </Section>
-          <Section id="skills" eyebrow="04 / Skills" title="Toolbox">
+          <Section id="skills" eyebrow="03 / Skills" title="Skills & tools">
             <SkillsSection />
           </Section>
         </div>
       </main>
       <Footer />
+      {openProject && <ProjectModal project={openProject} onClose={() => setOpenProject(null)} />}
+      {import.meta.env.VITE_THEME_PREVIEW === '1' && <ThemePreviewSwitcher />}
     </div>
   );
 }

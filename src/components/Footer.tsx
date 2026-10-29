@@ -10,10 +10,9 @@ export function Footer() {
       <div className="container relative mx-auto px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <p className="eyebrow mb-3">Contact</p>
-          <h2 className="section-title mb-4">Let&apos;s build something.</h2>
+          <h2 className="section-title mb-4">Get in touch</h2>
           <p className="mb-8 text-muted-foreground">
-            I&apos;m looking for a hardware, PCB or embedded co-op starting January 2027. If you&apos;re hiring,
-            sponsoring ECESS, or just want to talk power electronics, my inbox is open.
+            Whether it&apos;s about a role, sponsoring ECESS, or one of my projects, I&apos;d be glad to hear from you.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-3">
             <a

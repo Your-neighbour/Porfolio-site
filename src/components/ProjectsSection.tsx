@@ -5,7 +5,7 @@ import { asset } from '../lib/asset';
 
 const STATUS_STYLES: Record<Project['status'], string> = {
   'Competition-proven': 'border-primary/40 bg-primary/10 text-primary',
-  'In progress': 'border-sky-400/40 bg-sky-400/10 text-sky-300',
+  'In progress': 'border-info/40 bg-info/10 text-info',
   Completed: 'border-secondary/40 bg-secondary/10 text-secondary',
   Coursework: 'border-border bg-accent text-muted-foreground',
   Discontinued: 'border-border bg-accent text-muted-foreground',
@@ -19,9 +19,8 @@ function StatusBadge({ status }: { status: Project['status'] }) {
   );
 }
 
-export function ProjectsSection() {
-  const [open, setOpen] = useState<Project | null>(null);
-
+export { MediaCarousel };
+export function ProjectsSection({ onOpen: setOpen }: { onOpen: (p: Project) => void }) {
   return (
     <div>
       <FeaturedProject project={featuredProject} onOpen={() => setOpen(featuredProject)} />
@@ -53,7 +52,6 @@ export function ProjectsSection() {
         </div>
       </div>
 
-      {open && <ProjectModal project={open} onClose={() => setOpen(null)} />}
     </div>
   );
 }
@@ -230,7 +228,7 @@ function MediaCarousel({
   );
 }
 
-function ProjectModal({ project, onClose }: { project: Project; onClose: () => void }) {
+export function ProjectModal({ project, onClose }: { project: Project; onClose: () => void }) {
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => e.key === 'Escape' && onClose();
     document.addEventListener('keydown', onKey);
@@ -297,8 +295,8 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
             )}
 
             {project.lessons && (
-              <div className="mb-4 flex gap-3 rounded-xl border border-sky-400/30 bg-sky-400/5 p-4">
-                <Lightbulb size={20} className="mt-0.5 flex-none text-sky-300" />
+              <div className="mb-4 flex gap-3 rounded-xl border border-info/30 bg-info/5 p-4">
+                <Lightbulb size={20} className="mt-0.5 flex-none text-info" />
                 <div>
                   <p className="mb-1 text-sm font-semibold">What testing taught me</p>
                   <p className="text-sm leading-relaxed text-muted-foreground">{project.lessons}</p>

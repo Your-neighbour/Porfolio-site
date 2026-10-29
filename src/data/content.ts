@@ -2,19 +2,25 @@
 
 export const profile = {
   name: 'Aaron Li',
-  headline: 'Computer Engineering Student, Hardware & PCB Design',
+  headline: 'Computer Engineering @ UBC',
   school: 'University of British Columbia',
   email: 'aaronxpublic@gmail.com',
   linkedin: 'https://www.linkedin.com/in/aaron-li-2771a4244',
-  availability: 'Seeking a 4–8 month co-op starting January 2027',
-  intro:
-    'I design and build hardware: power electronics, PCBs and the firmware that ties them together. Most of my time goes into UBC Supermileage, where I co-lead the Power Systems division.',
+  // Collapsed hero text. "More about me" swaps this for `about`.
+  summary:
+    'I build things that work in the real world, from circuit boards and firmware to engineering tools, and I like leading the teams that build them.',
   about: [
-    'I’m a Computer Engineering co-op student at UBC who likes the part of engineering where a design meets the bench. My flagship project is the low-voltage power distribution board that helped UBC Supermileage complete its first-ever run at Shell Eco-marathon Americas in April 2026.',
-    'I spent eight months at Phasor Engineering in Calgary as a substations electrical co-op, building engineering tools, including a rigid bus design template that is now being rolled out on client projects. Back on campus, I co-lead Supermileage’s Power Systems division and serve as one of ECESS’s Vice Presidents of External Relations, connecting UBC’s ECE students with industry.',
-    'Outside of team work I keep a couple of personal hardware projects going, currently a programmable DC electronic load and a PID-controlled reflow oven, because the fastest way I learn is by building something and finding out where my assumptions break.',
+    'I’m a Computer Engineering co-op student at UBC. The work I enjoy most spans the whole path from idea to working system: designing it, building it, testing it on the bench and seeing it hold up in use.',
+    'At UBC Supermileage I co-lead the Power Systems division. The power distribution board I designed helped the team complete its first-ever successful run at Shell Eco-marathon Americas in April 2026.',
+    'I spent eight months at Phasor Engineering in Calgary as a substations electrical co-op, building engineering tools, including a rigid bus design template that is now being rolled out on client projects.',
+    'As one of ECESS’s Vice Presidents of External Relations, I’ve organized industry panel talks and brought on sponsors for the society, and I’m now organizing our career fair and a student career trip to Toronto.',
+    'On my own time I keep a couple of personal projects going, currently a programmable DC electronic load and a PID-controlled reflow oven.',
   ],
-  focus: ['PCB Design', 'Power Electronics', 'DC-DC Converters', 'Embedded C/C++', 'CAN Bus', 'KiCad'],
+  quickFacts: [
+    { label: 'Power Systems Co-Lead', org: 'UBC Supermileage' },
+    { label: 'VP External Relations', org: 'ECESS' },
+    { label: 'Electrical Co-op', org: 'Phasor Engineering' },
+  ],
 };
 
 export type Role = { title: string; period: string };
@@ -25,7 +31,7 @@ export type ExperienceItem = {
   organization: string;
   location?: string;
   roles: Role[];
-  summary?: string;
+  summary: string;
   highlights: { heading?: string; points: string[] }[];
   tags: string[];
   image?: string;
@@ -42,7 +48,7 @@ export const experience: ExperienceItem[] = [
       { title: 'Electrical Project Lead', period: 'Sep 2024 – Jul 2026' },
     ],
     summary:
-      'Student design team building ultra-efficient battery-electric and hydrogen fuel-cell vehicles for Shell Eco-marathon.',
+      'Co-lead the 6-member Power Systems division of a student team building ultra-efficient electric and hydrogen vehicles. My power distribution PCB helped the team complete its first-ever successful Shell Eco-marathon Americas run.',
     highlights: [
       {
         heading: 'Division leadership',
@@ -67,19 +73,20 @@ export const experience: ExperienceItem[] = [
     kind: 'leadership',
     organization: 'UBC Electrical & Computer Engineering Student Society (ECESS)',
     location: 'Vancouver, BC',
-    roles: [{ title: 'Vice President, External Relations', period: '2026 – Present' }],
+    roles: [{ title: 'Vice President, External Relations', period: 'Apr 2026 – Present' }],
     summary:
-      'One of the Vice Presidents of External Relations for the student society representing UBC’s electrical and computer engineering students, acting as the society’s link to industry.',
+      'Run industry relations for the student society representing UBC’s electrical and computer engineering students: panels, sponsors, the career fair and a career trip.',
     highlights: [
       {
         points: [
-          'Lead industry sponsorship outreach, building relationships with companies that support ECE student programming',
-          'Handle employer outreach for the ECE career fair',
-          'Organize company tours that give students a first-hand look at engineering work beyond the classroom',
+          'Organized industry panel talks for ECE students',
+          'Secured industry sponsors for the society',
+          'Organizing the ECE career fair, including employer outreach',
+          'Planning a student career trip to Toronto',
         ],
       },
     ],
-    tags: ['Industry Relations', 'Sponsorship', 'Career Fair', 'Event Planning'],
+    tags: ['Industry Relations', 'Sponsorship', 'Event Planning', 'Career Fair'],
   },
   {
     id: 'phasor',
@@ -87,7 +94,8 @@ export const experience: ExperienceItem[] = [
     organization: 'Phasor Engineering Inc.',
     location: 'Calgary, AB',
     roles: [{ title: 'Substations Electrical Co-op Student', period: 'Jan 2026 – Aug 2026' }],
-    summary: 'Electrical engineering consultancy focused on substation and utility-scale power projects.',
+    summary:
+      'Built two engineering tools at a substation and utility-scale power consultancy: a Mathcad rigid bus design template now being rolled out on client projects, and a VBA material calculator for battery storage sites.',
     highlights: [
       {
         heading: 'Substation rigid bus design template',
@@ -113,6 +121,7 @@ export const experience: ExperienceItem[] = [
     organization: 'University of British Columbia',
     location: 'Vancouver, BC',
     roles: [{ title: 'BASc, Computer Engineering (Co-op)', period: 'Expected 2028' }],
+    summary: 'Bachelor of Applied Science in Computer Engineering, co-op program.',
     highlights: [
       {
         points: [
