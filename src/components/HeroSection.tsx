@@ -1,154 +1,102 @@
-import React, { useEffect, useState } from 'react'
-import {
-  Github,
-  Linkedin,
-  Mail,
-  Phone,
-  ChevronDown,
-  ChevronUp,
-} from 'lucide-react'
+import React from 'react';
+import { ArrowRight, Linkedin, Mail, MapPin } from 'lucide-react';
+import { profile } from '../data/content';
+import { asset } from '../lib/asset';
+import { scrollToSection } from './Header';
+
+const STATS = [
+  { value: '49 km/kWh', label: 'Supermileage’s first-ever successful run at Shell Eco-marathon Americas, 2026' },
+  { value: '6', label: 'members in the Power Systems division I co-lead' },
+  { value: '8 mo', label: 'substations co-op at Phasor Engineering' },
+];
+
 export function HeroSection() {
-  const [isExpanded, setIsExpanded] = useState(false)
-  const [currentImageIndex, setCurrentImageIndex] = useState(0)
-  const backgroundImages = [
-    '/supergang.jpg',
-    '/ubc.jpg',
-    '/squam.jpg',
-    '/strut.JPG',
-  ]
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImageIndex((prevIndex) =>
-        prevIndex === backgroundImages.length - 1 ? 0 : prevIndex + 1,
-      )
-    }, 8000)
-    return () => clearInterval(interval)
-  }, [backgroundImages.length])
   return (
-    <section id="about" className="relative py-16 md:py-24 overflow-hidden">
-      {/* Background Image with Overlay */}
-      <div className="absolute inset-0 z-0">
-        {backgroundImages.map((image, index) => (
-          <img
-            key={image}
-            src={image}
-            alt="Background Photos"
-            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${index === currentImageIndex ? 'opacity-80' : 'opacity-0'}`}
-          />
-        ))}
-        <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background"></div>
-      </div>
-      {/* Content */}
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+    <section className="relative overflow-hidden">
+      <div className="grid-bg pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_at_top,black_30%,transparent_75%)]" />
+      <div className="pointer-events-none absolute -top-40 right-0 h-[480px] w-[480px] rounded-full bg-primary/10 blur-3xl" />
+
+      <div className="container relative mx-auto px-4 pb-16 pt-12 sm:px-6 md:pb-24 md:pt-20 lg:px-8">
+        <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-[1.4fr_1fr]">
           <div className="order-2 md:order-1">
-            <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">
-              Hi, I'm{' '}
-              <span className="text-blue-600 dark:text-blue-400">Aaron Li</span>
-            </h1>
-            <h2 className="text-2xl md:text-3xl font-semibold text-muted-foreground mb-6">
-              UBC Computer Engineering Student
-            </h2>
-            {/* Expandable Text Section */}
-            <div
-              className="cursor-pointer group mb-8"
-              onClick={() => setIsExpanded(!isExpanded)}
-            >
-              <div className="bg-card/50 backdrop-blur-sm p-6 rounded-lg border border-border hover:border-primary/50 transition-all">
-                <p className="text-lg mb-4">
-                  I love bringing hardware and software together to build
-                  practical tech.<br></br>
-                  Always looking for new challenges that let me learn,
-                  collaborate, and apply my engineering skills to real-world
-                  problems.{' '}
-                </p>
-                <div
-                  className={`overflow-hidden transition-all duration-700 ease-in-out ${isExpanded ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}`}
-                >
-                  <div className="space-y-4 text-base pt-2">
-                    <p>
-                      Currently, I'm an {' '}
-                      <strong> Electrical Project Lead </strong>
-                      for the <strong> UBC Supermileage </strong> engineering
-                      design team, where I help design and implement electrical
-                      systems for energy-efficient vehicles. This role has given
-                      me the opportunity to lead projects, collaborate closely
-                      with teammates, and translate ideas into working
-                      prototypes. Beyond team projects, I also enjoy personal
-                      projects that push my skills, like building a
-                      GUI-controlled reflow oven or designing logic circuits
-                      from scratch.
-                    </p>
-                    <p>
-                      I'm motivated by solving real-world problems, learning new
-                      technologies, and creating solutions that are both
-                      functional and elegant. Whether it's developing embedded
-                      software, designing circuits, or optimizing a system for
-                      efficiency, I thrive on challenges that let me apply my
-                      engineering skills in practical ways.
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-center justify-center mt-4 text-sm text-muted-foreground group-hover:text-primary transition-colors">
-                  {isExpanded ? (
-                    <>
-                      <span>Less</span>
-                      <ChevronUp size={16} className="ml-1" />
-                    </>
-                  ) : (
-                    <>
-                      <span>More</span>
-                      <ChevronDown size={16} className="ml-1" />
-                    </>
-                  )}
-                </div>
-              </div>
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-secondary/40 bg-secondary/10 px-3 py-1 text-xs font-medium text-secondary">
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-secondary opacity-60" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-secondary" />
+              </span>
+              {profile.availability}
             </div>
-            <div className="flex space-x-4 mb-8">
+
+            <h1 className="mb-4 text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
+              Hi, I&apos;m <span className="text-primary">Aaron Li</span>.
+            </h1>
+            <p className="mb-2 text-xl font-semibold text-foreground/90 sm:text-2xl">{profile.headline}</p>
+            <p className="mb-8 flex items-center gap-1.5 text-sm text-muted-foreground">
+              <MapPin size={14} /> {profile.school} · Vancouver, BC
+            </p>
+            <p className="mb-8 max-w-xl text-lg leading-relaxed text-muted-foreground">{profile.intro}</p>
+
+            <div className="mb-8 flex flex-wrap items-center gap-3">
               <a
-                href="https://www.linkedin.com/in/aaron-li-2771a4244"
-                className="p-2 rounded-full border border-border hover:bg-accent transition-colors"
+                href="#projects"
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToSection('projects');
+                }}
+                className="inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition hover:bg-primary/90"
+              >
+                See my projects <ArrowRight size={16} />
+              </a>
+              <a
+                href={`mailto:${profile.email}`}
+                className="inline-flex items-center gap-2 rounded-lg border border-border px-5 py-2.5 text-sm font-semibold transition hover:border-primary/60 hover:bg-accent"
+              >
+                <Mail size={16} /> Email me
+              </a>
+              <a
+                href={profile.linkedin}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-border transition hover:border-primary/60 hover:bg-accent"
                 aria-label="LinkedIn profile"
               >
-                <Linkedin size={20} />
-              </a>
-              <a
-                href="mailto:aaronxpublic@gmail.com"
-                className="p-2 rounded-full border border-border hover:bg-accent transition-colors"
-                aria-label="Email contact"
-              >
-                <Mail size={20} />
+                <Linkedin size={18} />
               </a>
             </div>
-            <div className="flex flex-wrap gap-3">
-              <span className="px-3 py-1 bg-accent text-accent-foreground rounded-full text-sm">
-                Python
-              </span>
-              <span className="px-3 py-1 bg-accent text-accent-foreground rounded-full text-sm">
-                C/C++
-              </span>
-              <span className="px-3 py-1 bg-accent text-accent-foreground rounded-full text-sm">
-                PCB Design
-              </span>
-              <span className="px-3 py-1 bg-accent text-accent-foreground rounded-full text-sm">
-                FPGA
-              </span>
-              <span className="px-3 py-1 bg-accent text-accent-foreground rounded-full text-sm">
-                Embedded Systems
-              </span>
+
+            <div className="flex flex-wrap gap-2">
+              {profile.focus.map((f) => (
+                <span key={f} className="rounded-full border border-border bg-card px-3 py-1 font-mono text-xs text-muted-foreground">
+                  {f}
+                </span>
+              ))}
             </div>
           </div>
-          <div className="order-1 md:order-2 flex justify-center">
-            <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-border shadow-xl">
-              <img
-                src="/IMG_6334.JPG"
-                alt="Profile"
-                className="w-full h-full object-cover"
-              />
+
+          <div className="order-1 flex justify-center md:order-2">
+            <div className="relative">
+              <div className="absolute -inset-3 rounded-[2rem] border border-dashed border-primary/30" />
+              <div className="relative h-64 w-56 overflow-hidden rounded-3xl border border-border shadow-2xl sm:h-80 sm:w-64 md:h-[26rem] md:w-80">
+                <img src={asset('img/profile.webp')} alt="Aaron Li" className="h-full w-full object-cover" />
+              </div>
+              <div className="absolute -bottom-4 -left-4 rounded-xl border border-border bg-card/95 px-4 py-2 shadow-lg backdrop-blur">
+                <p className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground">Currently</p>
+                <p className="text-sm font-semibold">Power Systems Co-Lead</p>
+              </div>
             </div>
           </div>
         </div>
+
+        <dl className="mt-16 grid grid-cols-1 gap-4 sm:grid-cols-3">
+          {STATS.map((s) => (
+            <div key={s.label} className="rounded-xl border border-border bg-card/60 p-5 backdrop-blur">
+              <dt className="sr-only">{s.label}</dt>
+              <dd className="font-mono text-2xl font-semibold text-primary">{s.value}</dd>
+              <dd className="mt-1 text-sm text-muted-foreground">{s.label}</dd>
+            </div>
+          ))}
+        </dl>
       </div>
     </section>
-  )
+  );
 }

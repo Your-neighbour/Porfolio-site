@@ -4,26 +4,28 @@
 
 @layer base {
   :root {
-    --background: 220 20% 12%;
-    --foreground: 210 40% 98%;
-    --muted: 220 20% 18%;
-    --muted-foreground: 215 16.3% 70%;
-    --accent: 220 20% 22%;
-    --accent-foreground: 210 40% 98%;
-    --popover: 220 20% 14%;
-    --popover-foreground: 215 20.2% 80%;
-    --border: 220 20% 24%;
-    --input: 220 20% 22%;
-    --card: 220 20% 15%;
-    --card-foreground: 210 40% 98%;
-    --primary: 210 100% 60%;
-    --primary-foreground: 220 20% 12%;
-    --secondary: 220 20% 20%;
-    --secondary-foreground: 210 40% 98%;
+    --background: 220 22% 9%;
+    --foreground: 210 30% 96%;
+    --muted: 220 18% 15%;
+    --muted-foreground: 218 12% 66%;
+    --accent: 220 18% 17%;
+    --accent-foreground: 210 30% 96%;
+    --popover: 220 20% 12%;
+    --popover-foreground: 215 20% 82%;
+    --border: 220 16% 20%;
+    --input: 220 16% 20%;
+    --card: 220 20% 12%;
+    --card-foreground: 210 30% 96%;
+    /* Copper accent, a nod to PCB traces */
+    --primary: 28 85% 60%;
+    --primary-foreground: 220 22% 9%;
+    /* Solder-mask green secondary accent */
+    --secondary: 152 45% 48%;
+    --secondary-foreground: 220 22% 9%;
     --destructive: 0 85% 60%;
     --destructive-foreground: 210 40% 98%;
-    --ring: 220 20% 24%;
-    --radius: 0.5rem;
+    --ring: 28 85% 60%;
+    --radius: 0.75rem;
   }
 }
 
@@ -31,8 +33,52 @@
   * {
     @apply border-border;
   }
+  html {
+    scroll-behavior: smooth;
+  }
   body {
-    @apply bg-background text-foreground;
-    font-feature-settings: "rlig" 1, "calt" 1;
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    font-feature-settings: 'rlig' 1, 'calt' 1;
+  }
+  ::selection {
+    background: hsl(var(--primary) / 0.35);
+  }
+  :focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .font-mono {
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  .eyebrow {
+    @apply font-mono text-xs uppercase tracking-[0.2em] text-primary;
+  }
+  .section-title {
+    @apply text-3xl md:text-4xl font-bold tracking-tight;
+  }
+  .chip {
+    @apply inline-flex items-center rounded-md border border-border bg-accent/60 px-2 py-0.5 text-xs text-muted-foreground;
+  }
+  /* Faint grid, like engineering paper */
+  .grid-bg {
+    background-image: linear-gradient(hsl(var(--border) / 0.35) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--border) / 0.35) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
   }
 }

@@ -1,35 +1,41 @@
 import React from 'react';
-import { Github, Linkedin, Mail, Phone } from 'lucide-react';
+import { Linkedin, Mail } from 'lucide-react';
+import { profile } from '../data/content';
+
 export function Footer() {
   const currentYear = new Date().getFullYear();
-  return <footer id="contact" className="border-t bg-background">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-          <div>
-            <h2 className="text-2xl font-bold mb-4">Get In Touch</h2>
-            <p className="text-muted-foreground mb-6 max-w-md">
-              I'm always interested in new opportunities and collaborations.
-              Whether you have a project idea or just want to connect, feel free
-              to reach out!
-            </p>
-            <div className="flex flex-col space-y-3 mb-6">
-              <a href="mailto:aaronxpublic@gmail.com" className="inline-flex items-center px-4 py-2 rounded-md bg-primary text-primary-foreground hover:bg-primary/90 transition-colors w-fit">
-                <Mail size={18} className="mr-2" />
-                aaronxpublic@gmail.com
-              </a>
-            </div>
-          </div>
-          <div className="flex flex-col items-start md:items-end">
-            <div className="flex space-x-4 mb-6">
-              <a href="https://www.linkedin.com/in/aaron-li-2771a4244" className="p-2 rounded-full border border-border hover:bg-accent transition-colors" aria-label="LinkedIn profile">
-                <Linkedin size={20} />
-              </a>
-            </div>
-            <p className="text-sm text-muted-foreground">
-              © {currentYear} Aaron Li. All rights reserved.
-            </p>
+  return (
+    <footer id="contact" className="relative mt-24 overflow-hidden border-t">
+      <div className="grid-bg pointer-events-none absolute inset-0 [mask-image:linear-gradient(to_bottom,black,transparent)]" />
+      <div className="container relative mx-auto px-4 py-16 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-2xl text-center">
+          <p className="eyebrow mb-3">Contact</p>
+          <h2 className="section-title mb-4">Let&apos;s build something.</h2>
+          <p className="mb-8 text-muted-foreground">
+            I&apos;m looking for a hardware, PCB or embedded co-op starting January 2027. If you&apos;re hiring,
+            sponsoring ECESS, or just want to talk power electronics, my inbox is open.
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-3">
+            <a
+              href={`mailto:${profile.email}`}
+              className="inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition hover:bg-primary/90"
+            >
+              <Mail size={16} /> {profile.email}
+            </a>
+            <a
+              href={profile.linkedin}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 rounded-lg border border-border px-5 py-2.5 text-sm font-semibold transition hover:border-primary/60 hover:bg-accent"
+            >
+              <Linkedin size={16} /> LinkedIn
+            </a>
           </div>
         </div>
+        <p className="mt-16 text-center font-mono text-xs text-muted-foreground">
+          © {currentYear} Aaron Li · Built with React, Vite &amp; Tailwind
+        </p>
       </div>
-    </footer>;
+    </footer>
+  );
 }

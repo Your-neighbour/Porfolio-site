@@ -1,67 +1,91 @@
 import React from 'react';
-import { Calendar, Building2, GraduationCap } from 'lucide-react';
-type ExperienceItem = {
-  type: 'work' | 'education';
-  title: string;
-  organization: string;
-  period: string;
-  description: string[];
-  tags: string[];
-};
+import { Briefcase, GraduationCap, Users, Wrench, MapPin } from 'lucide-react';
+import { experience, ExperienceItem } from '../data/content';
+import { asset } from '../lib/asset';
+
+const KIND = {
+  work: { icon: Briefcase, label: 'Industry co-op' },
+  team: { icon: Wrench, label: 'Engineering design team' },
+  leadership: { icon: Users, label: 'Student leadership' },
+  education: { icon: GraduationCap, label: 'Education' },
+} as const;
+
 export function ExperienceSection() {
-  const experiences: ExperienceItem[] = [{
-    type: 'work',
-    title: 'Electrical Project Lead',
-    organization: 'UBC Supermileage',
-    period: 'September 2024 - Present',
-    description: ['Leading electrical systems design for Urban electric vehicle and hydrogen fuel cell car', 'Designed low power distribution system with custom PCB for 12V power distribution', 'Developed Arduino firmware in C for throttle control and H2 sensor data interpretation', 'Built GUI-based dynamometer interface using C++ on Raspberry Pi Pico with touchscreen display'],
-    tags: ['C/C++', 'PCB Design', 'Arduino', 'Raspberry Pi', 'CAN']
-  }, {
-    type: 'education',
-    title: 'Bachelor of Applied Science - Computer Engineering',
-    organization: 'University of British Columbia',
-    period: 'Expected May 2027',
-    description: ['3rd year Computer Engineering student focusing on embedded systems and hardware design', 'Technical skills: Python, C/C++, System Verilog, ARM Assembly', 'Tools: LTSpice, KiCAD, Git, Quartus, ModelSim'],
-    tags: ['Computer Engineering', 'Embedded Systems', 'Hardware Design']
-  }];
-  return <div className="py-8">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {experiences.map((item, index) => <ExperienceCard key={index} item={item} />)}
-      </div>
-    </div>;
+  return (
+    <ol className="relative space-y-8 border-l border-border pl-6 md:pl-10">
+      {experience.map((item) => (
+        <ExperienceCard key={item.id} item={item} />
+      ))}
+    </ol>
+  );
 }
-function ExperienceCard({
-  item
-}: {
-  item: ExperienceItem;
-}) {
-  const Icon = item.type === 'work' ? Building2 : GraduationCap;
-  return <div className="group rounded-lg border bg-card text-card-foreground shadow-sm overflow-hidden hover:shadow-lg hover:border-primary/50 transition-all">
-      <div className="p-6">
-        <div className="flex items-start justify-between mb-4">
-          <div className="p-3 rounded-lg bg-accent/50 group-hover:bg-primary/10 transition-colors">
-            <Icon size={24} className="text-primary" />
+
+function ExperienceCard({ item }: { item: ExperienceItem }) {
+  const { icon: Icon, label } = KIND[item.kind];
+  return (
+    <li className="relative">
+      <span className="absolute -left-[2.35rem] top-6 grid h-8 w-8 place-items-center rounded-full border border-border bg-card text-primary md:-left-[3.6rem] md:h-10 md:w-10">
+        <Icon size={16} />
+      </span>
+
+      <article className="overflow-hidden rounded-2xl border border-border bg-card transition hover:border-primary/40">
+        {item.image && (
+          <div className="relative h-40 w-full overflow-hidden md:h-52">
+            <img src={asset(item.image)} alt={`${item.organization} team`} loading="lazy" className="h-full w-full object-cover object-[center_35%]" />
+            <div className="absolute inset-0 bg-gradient-to-t from-card via-card/30 to-transparent" />
           </div>
+        )}
+        <div className="p-6 md:p-8">
+          <p className="eyebrow mb-2">{label}</p>
+          <div className="mb-4 flex flex-col gap-1 md:flex-row md:items-start md:justify-between md:gap-6">
+            <div>
+              <h3 className="text-xl font-bold md:text-2xl">{item.organization}</h3>
+              {item.location && (
+                <p className="mt-1 flex items-center gap-1 text-sm text-muted-foreground">
+                  <MapPin size={13} /> {item.location}
+                </p>
+              )}
+            </div>
+          </div>
+
+          <div className="mb-5 space-y-1.5">
+            {item.roles.map((r) => (
+              <div key={r.title} className="flex flex-col justify-between gap-1 sm:flex-row sm:items-baseline">
+                <span className="font-semibold text-foreground">{r.title}</span>
+                <span className="font-mono text-xs text-muted-foreground">{r.period}</span>
+              </div>
+            ))}
+          </div>
+
+          {item.summary && <p className="mb-5 text-sm text-muted-foreground">{item.summary}</p>}
+
+          <div className="space-y-5">
+            {item.highlights.map((h, idx) => (
+              <div key={idx}>
+                {h.heading && <h4 className="mb-2 text-sm font-semibold text-foreground/90">{h.heading}</h4>}
+                <ul className="space-y-2">
+                  {h.points.map((pt, i) => (
+                    <li key={i} className="flex gap-3 text-sm leading-relaxed text-muted-foreground">
+                      <span className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-primary" />
+                      <span>{pt}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+
+          {item.tags.length > 0 && (
+            <div className="mt-6 flex flex-wrap gap-2">
+              {item.tags.map((t) => (
+                <span key={t} className="chip">
+                  {t}
+                </span>
+              ))}
+            </div>
+          )}
         </div>
-        <h3 className="text-xl font-semibold mb-1 group-hover:text-primary transition-colors">
-          {item.title}
-        </h3>
-        <p className="text-primary font-medium mb-3">{item.organization}</p>
-        <div className="flex items-center text-sm text-muted-foreground mb-4">
-          <Calendar size={14} className="mr-2" />
-          <span>{item.period}</span>
-        </div>
-        <ul className="space-y-2 mb-4">
-          {item.description.map((desc, idx) => <li key={idx} className="flex items-start text-sm text-muted-foreground">
-              <span className="text-primary mr-2 mt-1">•</span>
-              <span>{desc}</span>
-            </li>)}
-        </ul>
-        {item.tags.length > 0 && <div className="flex flex-wrap gap-2">
-            {item.tags.map((tag, idx) => <span key={idx} className="px-2 py-1 bg-accent/50 text-accent-foreground rounded-md text-xs">
-                {tag}
-              </span>)}
-          </div>}
-      </div>
-    </div>;
+      </article>
+    </li>
+  );
 }
