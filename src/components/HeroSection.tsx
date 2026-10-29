@@ -60,34 +60,53 @@ export function HeroSection({ onOpenProject }: { onOpenProject: (p: Project) => 
               ))}
             </div>
 
-            {/* Collapsible bio: summary when closed, full story when open */}
+            {/* Collapsible bio: summary when closed, full story when open.
+                Both panels stay mounted and animate their height (grid-rows 0fr <-> 1fr)
+                and opacity, so the swap is a smooth cross-fade instead of a jump. */}
             <div className="mb-6">
-              {!expanded ? (
-                <p className="max-w-xl text-lg leading-relaxed text-muted-foreground">{profile.summary}</p>
-              ) : (
-                <div className="max-w-xl space-y-3 text-base leading-relaxed text-muted-foreground">
-                  {profile.about.map((p, i) => (
-                    <p key={i}>{p}</p>
-                  ))}
-                  <div className="pt-2">
-                    <p className="eyebrow mb-2">Outside the lab</p>
-                    <div className="grid grid-cols-2 gap-2">
-                      {outsideTheLab.map((m) => (
-                        <img
-                          key={m.url}
-                          src={asset(m.url)}
-                          alt={m.alt}
-                          loading="lazy"
-                          className="aspect-[4/3] w-full rounded-lg border border-border object-cover"
-                        />
-                      ))}
+              <div
+                aria-hidden={expanded}
+                className={`grid transition-[grid-template-rows,opacity] duration-500 ease-in-out ${
+                  expanded ? 'grid-rows-[0fr] opacity-0' : 'grid-rows-[1fr] opacity-100'
+                }`}
+              >
+                <div className="overflow-hidden">
+                  <p className="max-w-xl text-lg leading-relaxed text-muted-foreground">{profile.summary}</p>
+                </div>
+              </div>
+              <div
+                id="about-more"
+                aria-hidden={!expanded}
+                className={`grid transition-[grid-template-rows,opacity] duration-500 ease-in-out ${
+                  expanded ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
+                }`}
+              >
+                <div className="overflow-hidden">
+                  <div className="max-w-xl space-y-3 text-base leading-relaxed text-muted-foreground">
+                    {profile.about.map((p, i) => (
+                      <p key={i}>{p}</p>
+                    ))}
+                    <div className="pt-2">
+                      <p className="eyebrow mb-2">Outside the lab</p>
+                      <div className="grid grid-cols-2 gap-2">
+                        {outsideTheLab.map((m) => (
+                          <img
+                            key={m.url}
+                            src={asset(m.url)}
+                            alt={m.alt}
+                            loading="lazy"
+                            className="aspect-[4/3] w-full rounded-lg border border-border object-cover"
+                          />
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </div>
-              )}
+              </div>
               <button
                 onClick={() => setExpanded((v) => !v)}
                 aria-expanded={expanded}
+                aria-controls="about-more"
                 className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline"
               >
                 {expanded ? 'Show less' : 'More about me'}
