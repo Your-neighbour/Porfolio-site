@@ -62,9 +62,6 @@ function FeaturedProject({ project, onOpen }: { project: Project; onOpen: () => 
       <div className="grid grid-cols-1 lg:grid-cols-2">
         <div className="relative bg-muted">
           <MediaCarousel media={project.media} className="aspect-square lg:aspect-auto lg:h-full lg:min-h-[28rem]" />
-          <span className="absolute left-4 top-4 rounded-full bg-primary px-3 py-1 font-mono text-[11px] font-semibold uppercase tracking-wider text-primary-foreground">
-            Flagship project
-          </span>
         </div>
         <div className="flex flex-col p-6 md:p-8">
           <div className="mb-3 flex flex-wrap items-center gap-2">
