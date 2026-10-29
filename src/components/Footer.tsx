@@ -12,7 +12,7 @@ export function Footer() {
           <p className="eyebrow mb-3">Contact</p>
           <h2 className="section-title mb-4">Get in touch</h2>
           <p className="mb-8 text-muted-foreground">
-            Whether it&apos;s about a role, sponsoring ECESS, or one of my projects, I&apos;d be glad to hear from you.
+            Whether it&apos;s about a role or one of my projects, I&apos;d be glad to hear from you.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-3">
             <a
