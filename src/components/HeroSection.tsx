@@ -34,11 +34,11 @@ export function HeroSection({ onOpenProject }: { onOpenProject: (p: Project) => 
         <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-[1fr_1.1fr] lg:gap-14">
           {/* Intro */}
           <div className="lg:pt-4">
-            <div className="mb-6 flex items-center gap-4">
+            <div className="mb-6 flex items-center gap-5 sm:gap-6">
               <img
                 src={asset('img/profile.webp')}
                 alt="Aaron Li"
-                className="h-20 w-20 flex-none rounded-2xl border border-border object-cover shadow-lg sm:h-28 sm:w-28"
+                className="h-[7.5rem] w-24 flex-none rounded-2xl border border-border object-cover object-top shadow-lg sm:h-48 sm:w-[9.6rem] lg:h-52 lg:w-[10.4rem]"
               />
               <div>
                 <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl">{profile.name}</h1>
